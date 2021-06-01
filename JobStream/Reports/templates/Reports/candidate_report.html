@@ -1,0 +1,10 @@
+<div class="container">
+    <div class="card">
+        <h2 class="card-title">Report</h2>
+        <form action="submit_candidate_report" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input class="btn btn-primary" id="report" name="report" type="submit" value="Submit">
+        </form>
+    </div>
+</div>

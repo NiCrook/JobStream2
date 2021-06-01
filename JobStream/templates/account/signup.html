@@ -1,0 +1,23 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Sign Up" %}{% endblock %}
+
+{% block auth_card %}
+    <div class="card" style="margin: auto; margin-top: 13%; width: 22rem;">
+        <div class="card-body">
+            <h1 class="card-title text-center">{% block card_title %}{% trans "Sign Up" %}{% endblock %}</h1>
+            {% block auth_forms %}
+                <form class="signup" id="signup_form" method="post" action="{% url 'candidate_signup' %}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    {% if redirect_field_value %}
+                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                    {% endif %}
+                    <button class="btn btn-primary" type="submit">{% trans "Sign Up" %} &raquo;</button>
+                </form>
+            {% endblock %}
+        </div>
+    </div>/
+{% endblock %}

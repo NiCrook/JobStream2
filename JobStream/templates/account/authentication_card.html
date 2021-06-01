@@ -1,0 +1,32 @@
+<div class="card" style="margin: auto; margin-top: 13%; width: 22rem;">
+    <div class="card-body">
+        <h1 class="card-title">{% block card_title %}{% trans "Sign In" %}{% endlbock %}</h1>
+
+        {% block top_content %}
+        <p>{% blocktrans %}If you have not created an account yet, then please
+        <a href="{{ signup_url }}">sign up</a> first!{% endblocktrans %}</p>
+        {% endblock top_content %}
+
+        {% block card_forms %}
+        <form class="login" method="POST" action="{% url 'account_login' %}">
+          {% csrf_token %}
+          {{ form.as_p }}
+          {% if redirect_field_value %}
+          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+          {% endif %}
+          <a class="button" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+          <button class="btn btn-primary" type="submit">{% trans "Sign In" %}</button>
+        </form>
+        {% endblock card_forms %}
+    </div>
+    {% block bottom_content %}
+    {% endblock bottom_content %}
+
+    {% block card_footer %}
+    <div class="card-footer">
+        <div style="text-align: center;">
+            <a href="{% url 'account_signup' %}">Sign Up</a>
+        </div>
+    </div>
+    {% endblock card_footer %}
+</div>
